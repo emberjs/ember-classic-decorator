@@ -13,7 +13,7 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     if (isProductionEnv()) {
-      if (!hasPlugin(parent, 'classic-decorator-transform')) {
+      if (!hasPlugin(parent, 'filter-imports:ember-classic-decorator')) {
         addPlugin(parent, [
           require.resolve('babel-plugin-filter-imports'),
           {
