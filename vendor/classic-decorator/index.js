@@ -2,10 +2,10 @@
 
 /* globals Ember, define */
 (function() {
-  var OWN_CLASSES = new WeakSet();
-  var HAS_CONSTRUCTOR = new WeakSet();
-  var IS_CLASSIC = new WeakSet();
-  var BASE_CLASSES = new WeakSet();
+  var OWN_CLASSES = new WeakMap();
+  var HAS_CONSTRUCTOR = new WeakMap();
+  var IS_CLASSIC = new WeakMap();
+  var BASE_CLASSES = new WeakMap();
   var IS_PERMA_CLASSIC = new WeakMap();
   window.__CLASSIC_HAS_CONSTRUCTOR__ = HAS_CONSTRUCTOR;
   window.__CLASSIC_OWN_CLASSES__ = OWN_CLASSES;
@@ -15,12 +15,12 @@
   IS_PERMA_CLASSIC.set(Ember.Route, false);
   IS_PERMA_CLASSIC.set(Ember.Service, false);
   IS_PERMA_CLASSIC.set(Ember.Helper, false);
-  BASE_CLASSES.add(Ember.CoreObject);
-  BASE_CLASSES.add(Ember.Object);
-  BASE_CLASSES.add(Ember.Controller);
-  BASE_CLASSES.add(Ember.Route);
-  BASE_CLASSES.add(Ember.Service);
-  BASE_CLASSES.add(Ember.Helper);
+  BASE_CLASSES.set(Ember.CoreObject, true);
+  BASE_CLASSES.set(Ember.Object, true);
+  BASE_CLASSES.set(Ember.Controller, true);
+  BASE_CLASSES.set(Ember.Route, true);
+  BASE_CLASSES.set(Ember.Service, true);
+  BASE_CLASSES.set(Ember.Helper, true);
 
   function getClassName(klass) {
     var klassToString = klass.toString();
@@ -51,7 +51,10 @@
           return IS_PERMA_CLASSIC.has(klass);
         });
 
-        if (permaClassicAncestor && IS_PERMA_CLASSIC.get(permaClassicAncestor)) {
+        if (
+          permaClassicAncestor &&
+          IS_PERMA_CLASSIC.get(permaClassicAncestor)
+        ) {
           throw new Error(
             'You defined the class '
               .concat(getClassName(this), ' that extends from ')
@@ -64,13 +67,18 @@
 
         if (HAS_CONSTRUCTOR.has(this)) {
           var ancestorWithInit = findAncestor(this, function(klass) {
-            return klass.prototype.hasOwnProperty('init') && !BASE_CLASSES.has(klass);
+            return (
+              klass.prototype.hasOwnProperty('init') && !BASE_CLASSES.has(klass)
+            );
           });
 
           if (ancestorWithInit !== null) {
             throw new Error(
               'You defined the class '
-                .concat(getClassName(this), " with a 'constructor' function, but one of its ancestors, ")
+                .concat(
+                  getClassName(this),
+                  " with a 'constructor' function, but one of its ancestors, "
+                )
                 .concat(
                   getClassName(ancestorWithInit),
                   ", uses the 'init' method. Due to the timing of the constructor and init methods, its not generally safe to use 'constructor' for class setup if the parent class is using 'init'. You can mark "
@@ -121,7 +129,7 @@
     });
 
     exports.default = function classic(target) {
-      IS_CLASSIC.add(target);
+      IS_CLASSIC.set(target, true);
       return target;
     };
   });
