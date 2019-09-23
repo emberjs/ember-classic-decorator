@@ -1,14 +1,14 @@
 'use strict';
 
 /* globals Ember, define */
-(function() {
+(function(global) {
   var OWN_CLASSES = new WeakMap();
   var HAS_CONSTRUCTOR = new WeakMap();
   var IS_CLASSIC = new WeakMap();
   var BASE_CLASSES = new WeakMap();
   var IS_PERMA_CLASSIC = new WeakMap();
-  window.__CLASSIC_HAS_CONSTRUCTOR__ = HAS_CONSTRUCTOR;
-  window.__CLASSIC_OWN_CLASSES__ = OWN_CLASSES;
+  global.__CLASSIC_HAS_CONSTRUCTOR__ = HAS_CONSTRUCTOR;
+  global.__CLASSIC_OWN_CLASSES__ = OWN_CLASSES;
   IS_PERMA_CLASSIC.set(Ember.Object, true);
   IS_PERMA_CLASSIC.set(Ember.Component, true);
   IS_PERMA_CLASSIC.set(Ember.Controller, false);
@@ -123,14 +123,9 @@
       return ret;
     },
   });
-  define('ember-classic-decorator', ['exports'], function(exports) {
-    Object.defineProperty(exports, '__esModule', {
-      value: true,
-    });
 
-    exports.default = function classic(target) {
-      IS_CLASSIC.set(target, true);
-      return target;
-    };
-  });
-})();
+  global.__EMBER_CLASSIC_DECORATOR = function classic(target) {
+    IS_CLASSIC.set(target, true);
+    return target;
+  }
+})(window);
