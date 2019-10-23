@@ -61,6 +61,34 @@ When installed, `@classic` will modify Ember classes to assert if certain APIs
 are used, and lint against other APIs being used, _unless_ a class is defined
 with classic class syntax, or decorated with `@classic`.
 
+The following APIs will throw an error if used in a non-classic class:
+
+* `reopen`
+* `reopenClass`
+
+The following APIs will cause a _lint_ error if used in a non-classic class
+_definition_. Since we cannot know everywhere that the class is used, instances
+of the class may still use these methods and will not cause assertions or lint
+errors:
+
+  - `get`
+  - `set`
+  - `getProperties`
+  - `setProperties`
+  - `getWithDefault`
+  - `incrementProperty`
+  - `decrementProperty`
+  - `toggleProperty`
+  - `addObserver`
+  - `removeObserver`
+  - `notifyPropertyChange`
+
+In addition, `@classic` will prevent users from using `constructor` in
+subclasses if the parent class has an `init` method, to prevent bugs caused by
+timing issues.
+
+### Which classes must be marked as @classic?
+
 Certain classes must _always_ be marked as classic:
 
 - Classic components
@@ -80,11 +108,14 @@ Other classes can be converted incrementally to remove classic APIs, including:
 - Controllers
 - Class based helpers
 
-In order to remove the classic decorator, you must:
+### How do I refactor and remove @classic?
 
-- Remove usage of mixins
-- Remove usage of static class methods, such as `reopen` and `reopenClass`
-- Remove usage of classic class methods, including:
+In order to remove the classic decorator from a class, you must:
+
+- Remove usage of mixins from the class
+- Remove usage of static class methods on the class, such as `reopen` and
+  `reopenClass`
+- Remove usage of classic class methods within the class definition, including:
   - `get`
   - `set`
   - `getProperties`
