@@ -41,9 +41,13 @@ module('@classic', () => {
         const FooController = Controller.extend();
 
         @classic
-        class BarController extends FooController {}
+        class BarController extends FooController {
+          foo = 123;
+        }
 
-        class BazController extends BarController {}
+        class BazController extends BarController {
+          foo = 456;
+        }
 
         @classic
         class QuxController extends BazController {}
