@@ -61,7 +61,7 @@ module.exports = {
 
       if (!hasPlugin) {
         parentOptions.babel.plugins.push(
-          require.resolve('./lib/classic-decorator-transform-v3')
+          require.resolve('./lib/classic-decorator-transform-v4')
         );
       }
     }
