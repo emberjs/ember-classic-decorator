@@ -142,25 +142,28 @@
     var DS, Resolver;
 
     try {
-      DS = mainRequire('ember-data').default;
       Resolver = mainRequire('ember-resolver').default;
-    } catch (e) {
-      return mainRequire(moduleName);
+      DS = mainRequire('ember-data').default;
+    } catch {}
+
+    if (Resolver) {
+      BASE_CLASSES.set(Resolver, true);
+      IS_PERMA_CLASSIC.set(Resolver, false);
     }
 
-    BASE_CLASSES.set(Resolver, true);
-    BASE_CLASSES.set(DS.Store, true);
-    BASE_CLASSES.set(DS.Model, true);
-    BASE_CLASSES.set(DS.Adapter, true);
-    BASE_CLASSES.set(DS.Serializer, true);
-    BASE_CLASSES.set(DS.Transform, true);
+    if (DS) {
+      BASE_CLASSES.set(DS.Store, true);
+      BASE_CLASSES.set(DS.Model, true);
+      BASE_CLASSES.set(DS.Adapter, true);
+      BASE_CLASSES.set(DS.Serializer, true);
+      BASE_CLASSES.set(DS.Transform, true);
 
-    IS_PERMA_CLASSIC.set(Resolver, false);
-    IS_PERMA_CLASSIC.set(DS.Store, false);
-    IS_PERMA_CLASSIC.set(DS.Model, false);
-    IS_PERMA_CLASSIC.set(DS.Adapter, false);
-    IS_PERMA_CLASSIC.set(DS.Serializer, false);
-    IS_PERMA_CLASSIC.set(DS.Transform, false);
+      IS_PERMA_CLASSIC.set(DS.Store, false);
+      IS_PERMA_CLASSIC.set(DS.Model, false);
+      IS_PERMA_CLASSIC.set(DS.Adapter, false);
+      IS_PERMA_CLASSIC.set(DS.Serializer, false);
+      IS_PERMA_CLASSIC.set(DS.Transform, false);
+    }
 
     window.require = require = mainRequire;
 
