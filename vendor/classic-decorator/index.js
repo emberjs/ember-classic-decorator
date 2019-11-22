@@ -20,6 +20,7 @@
   IS_PERMA_CLASSIC.set(Ember.Route, false);
   IS_PERMA_CLASSIC.set(Ember.Service, false);
   IS_PERMA_CLASSIC.set(Ember.Helper, false);
+  IS_PERMA_CLASSIC.set(Ember.Location, false);
 
   BASE_CLASSES.set(Ember.ObjectProxy, true);
   BASE_CLASSES.set(Ember.CoreObject, true);
@@ -30,6 +31,7 @@
   BASE_CLASSES.set(Ember.Route, true);
   BASE_CLASSES.set(Ember.Service, true);
   BASE_CLASSES.set(Ember.Helper, true);
+  BASE_CLASSES.set(Ember.Location, true);
 
   function getClassName(klass) {
     var klassToString = klass.toString();
