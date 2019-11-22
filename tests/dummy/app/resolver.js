@@ -1,3 +1,3 @@
 import Resolver from 'ember-resolver';
 
-export default Resolver;
+export default class MyCustomResolver extends Resolver {}

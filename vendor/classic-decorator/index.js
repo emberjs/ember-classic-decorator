@@ -11,13 +11,17 @@
   global.__CLASSIC_OWN_CLASSES__ = OWN_CLASSES;
   IS_PERMA_CLASSIC.set(Ember.Object, true);
   IS_PERMA_CLASSIC.set(Ember.Component, true);
+  IS_PERMA_CLASSIC.set(Ember.Application, false);
   IS_PERMA_CLASSIC.set(Ember.Controller, false);
+  IS_PERMA_CLASSIC.set(Ember.Router, false);
   IS_PERMA_CLASSIC.set(Ember.Route, false);
   IS_PERMA_CLASSIC.set(Ember.Service, false);
   IS_PERMA_CLASSIC.set(Ember.Helper, false);
   BASE_CLASSES.set(Ember.CoreObject, true);
   BASE_CLASSES.set(Ember.Object, true);
+  BASE_CLASSES.set(Ember.Application, true);
   BASE_CLASSES.set(Ember.Controller, true);
+  BASE_CLASSES.set(Ember.Router, true);
   BASE_CLASSES.set(Ember.Route, true);
   BASE_CLASSES.set(Ember.Service, true);
   BASE_CLASSES.set(Ember.Helper, true);
@@ -60,7 +64,8 @@
               .concat(getClassName(this), ' that extends from ')
               .concat(
                 getClassName(permaClassicAncestor),
-                " using native class syntax, but you didn't mark it with the @classic decorator. All user classes that extend from this class must be marked as @classic, since they use classic features. If you want to remove the @classic decorator, see the guides on how to convert this class into the Octane version: [TODO_GUIDE_LINK]"
+                " using native class syntax, but you didn't mark it with the @classic decorator. All user classes that extend from this class must be marked as @classic, since they use classic features. If you want to remove the @classic decorator, you must remove the base class. For components, you can do this by converting to Glimmer components. For plain classes that extend from EmberObject, you can convert them into plain native classes that do not extend from EmberObject.\n\n" +
+                "If this class is a base class provided by the framework that you should be allowed to remove @classic from, please open an issue on the classic decorators repo: https://github.com/emberjs/ember-classic-decorator"
               )
           );
         }
@@ -85,7 +90,8 @@
                 )
                 .concat(
                   getClassName(this),
-                  " with the @classic decorator and safely use 'init', or you can convert the parent class to use native classes, and switch from 'init' to 'constructor' there first. See the guides for more details: [TODO_GUIDE_LINK]"
+                  " with the @classic decorator and safely use 'init', or you can convert the parent class to use native classes, and switch from 'init' to 'constructor' there first.\n\n" +
+                  "If this error message is not being triggered by your code or code from an addon, but from Ember itself, please file a bug report on the classic decorator repo: https://github.com/emberjs/ember-classic-decorator"
                 )
             );
           }
@@ -99,7 +105,8 @@
         throw new Error(
           'You attempted to use the .reopen() method on the '.concat(
             getClassName(this),
-            " class, but it's not a classic class! Redefining classes after they have been defined is generally considered an antipattern. See the upgrade guide for suggestions and alternatives: [TODO_GUIDE_LINK]"
+            " class, but it's not a classic class! Redefining classes after they have been defined is generally considered an antipattern.\n\n" +
+            "If this error message is not being triggered by your code or code from an addon, but from Ember itself, please file a bug report on the classic decorator repo: https://github.com/emberjs/ember-classic-decorator"
           )
         );
       }
@@ -109,11 +116,12 @@
       return ret;
     },
     reopenClass: function reopenClass() {
-      if (OWN_CLASSES.has(this) && !IS_CLASSIC.has(this)) {
+      if (OWN_CLASSES.has(this) && !IS_CLASSIC.has(this) && !Ember.Application.detect(this) && !Ember.Router.detect(this)) {
         throw new Error(
           'You attempted to use the .reopen() method on the '.concat(
             getClassName(this),
-            " class, but it's not a classic class! Redefining classes after they have been defined is generally considered an antipattern. If you were reopening this class to add static class fields or methods, you can now define those with the 'static' keyword instead. See the upgrade guide for suggestions and alternatives: [TODO_GUIDE_LINK]"
+            " class, but it's not a classic class! Redefining classes after they have been defined is generally considered an antipattern. If you were reopening this class to add static class fields or methods, you can now define those with the 'static' keyword instead.\n\n" +
+            "If this error message is not being triggered by your code or code from an addon, but from Ember itself, please file a bug report on the classic decorator repo: https://github.com/emberjs/ember-classic-decorator"
           )
         );
       }
@@ -127,5 +135,35 @@
   global.__EMBER_CLASSIC_DECORATOR = function classic(target) {
     IS_CLASSIC.set(target, true);
     return target;
+  }
+
+  let mainRequire = require;
+  window.require = require = function patchData(moduleName) {
+    var DS, Resolver;
+
+    try {
+      DS = mainRequire('ember-data').default;
+      Resolver = mainRequire('ember-resolver').default;
+    } catch (e) {
+      return mainRequire(moduleName);
+    }
+
+    BASE_CLASSES.set(Resolver, true);
+    BASE_CLASSES.set(DS.Store, true);
+    BASE_CLASSES.set(DS.Model, true);
+    BASE_CLASSES.set(DS.Adapter, true);
+    BASE_CLASSES.set(DS.Serializer, true);
+    BASE_CLASSES.set(DS.Transform, true);
+
+    IS_PERMA_CLASSIC.set(Resolver, false);
+    IS_PERMA_CLASSIC.set(DS.Store, false);
+    IS_PERMA_CLASSIC.set(DS.Model, false);
+    IS_PERMA_CLASSIC.set(DS.Adapter, false);
+    IS_PERMA_CLASSIC.set(DS.Serializer, false);
+    IS_PERMA_CLASSIC.set(DS.Transform, false);
+
+    window.require = require = mainRequire;
+
+    return mainRequire(moduleName);
   }
 })(window);
