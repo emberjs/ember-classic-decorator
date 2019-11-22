@@ -9,14 +9,19 @@
   var IS_PERMA_CLASSIC = new WeakMap();
   global.__CLASSIC_HAS_CONSTRUCTOR__ = HAS_CONSTRUCTOR;
   global.__CLASSIC_OWN_CLASSES__ = OWN_CLASSES;
+
   IS_PERMA_CLASSIC.set(Ember.Object, true);
   IS_PERMA_CLASSIC.set(Ember.Component, true);
+
+  IS_PERMA_CLASSIC.set(Ember.ObjectProxy, false);
   IS_PERMA_CLASSIC.set(Ember.Application, false);
   IS_PERMA_CLASSIC.set(Ember.Controller, false);
   IS_PERMA_CLASSIC.set(Ember.Router, false);
   IS_PERMA_CLASSIC.set(Ember.Route, false);
   IS_PERMA_CLASSIC.set(Ember.Service, false);
   IS_PERMA_CLASSIC.set(Ember.Helper, false);
+
+  BASE_CLASSES.set(Ember.ObjectProxy, true);
   BASE_CLASSES.set(Ember.CoreObject, true);
   BASE_CLASSES.set(Ember.Object, true);
   BASE_CLASSES.set(Ember.Application, true);
