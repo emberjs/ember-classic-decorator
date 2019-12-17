@@ -144,14 +144,14 @@
     return target;
   }
 
-  let mainRequire = require;
+  var mainRequire = require;
   window.require = require = function patchData(moduleName) {
     var DS, Resolver;
 
     try {
       Resolver = mainRequire('ember-resolver').default;
       DS = mainRequire('ember-data').default;
-    } catch {}
+    } catch (e) {}
 
     if (Resolver) {
       BASE_CLASSES.set(Resolver, true);
