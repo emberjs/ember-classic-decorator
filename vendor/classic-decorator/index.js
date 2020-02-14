@@ -80,11 +80,11 @@
         if (HAS_CONSTRUCTOR.has(this)) {
           var ancestorWithInit = findAncestor(this, function(klass) {
             return (
-              klass.prototype.hasOwnProperty('init') && !BASE_CLASSES.has(klass)
+              klass.prototype.hasOwnProperty('init') || BASE_CLASSES.has(klass)
             );
           });
 
-          if (ancestorWithInit !== null) {
+          if (ancestorWithInit !== null && !BASE_CLASSES.has(ancestorWithInit)) {
             throw new Error(
               'You defined the class '
                 .concat(
