@@ -39,7 +39,7 @@
   }
 
   function findAncestor(klass, predicate) {
-    if (BASE_CLASSES.has(klass) {
+    if (BASE_CLASSES.has(klass)) {
         return null;
     }
 
