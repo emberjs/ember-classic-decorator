@@ -144,13 +144,13 @@
     return target;
   }
 
-  var mainRequire = require;
+  let originalRequire = window.require;
   window.require = require = function patchData(moduleName) {
     var DS, Resolver;
 
     try {
-      Resolver = mainRequire('ember-resolver').default;
-      DS = mainRequire('ember-data').default;
+      Resolver = originalRequire('ember-resolver').default;
+      DS = originalRequire('ember-data').default;
     } catch (e) {}
 
     if (Resolver) {
@@ -172,8 +172,8 @@
       IS_PERMA_CLASSIC.set(DS.Transform, false);
     }
 
-    window.require = require = mainRequire;
+    window.require = require = window.requirejs;
 
-    return mainRequire(moduleName);
+    return window.requirejs(moduleName);
   }
 })(window);
