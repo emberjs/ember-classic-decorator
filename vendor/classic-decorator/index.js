@@ -57,7 +57,7 @@
       // general case.
       var ret = this._super.apply(this, arguments);
 
-      if (OWN_CLASSES.has(this) && !IS_CLASSIC.has(this)) {
+      if (OWN_CLASSES.get(this) && !IS_CLASSIC.has(this)) {
         var permaClassicAncestor = findAncestor(this, function(klass) {
           return IS_PERMA_CLASSIC.has(klass);
         });
@@ -108,7 +108,7 @@
       return ret;
     },
     reopen: function reopen() {
-      if (OWN_CLASSES.has(this) && !IS_CLASSIC.has(this)) {
+      if (OWN_CLASSES.get(this) && !IS_CLASSIC.has(this)) {
         throw new Error(
           'You attempted to use the .reopen() method on the '.concat(
             getClassName(this),
@@ -123,7 +123,7 @@
       return ret;
     },
     reopenClass: function reopenClass() {
-      if (OWN_CLASSES.has(this) && !IS_CLASSIC.has(this) && !Ember.Application.detect(this) && !Ember.Router.detect(this)) {
+      if (OWN_CLASSES.get(this) && !IS_CLASSIC.has(this) && !Ember.Application.detect(this) && !Ember.Router.detect(this)) {
         throw new Error(
           'You attempted to use the .reopen() method on the '.concat(
             getClassName(this),
