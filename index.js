@@ -22,7 +22,7 @@ module.exports = {
     return options;
   },
 
-  included() {
+  included(parent) {
     this._super.included.apply(this, arguments);
 
     let parentOptions = this._getParentOptions();
@@ -30,6 +30,10 @@ module.exports = {
     // Create babel options if they do not exist
     parentOptions.babel = parentOptions.babel || {};
     parentOptions.babel.plugins = parentOptions.babel.plugins || [];
+
+    // We emit macros from our babel plugin, which means our parent also needs
+    // the macros babel plugin.
+    this.addons.find(a => a.name === '@embroider/macros').installBabelPlugin(parent);
 
     if (isProductionEnv()) {
       let hasPlugin = parentOptions.babel.plugins
