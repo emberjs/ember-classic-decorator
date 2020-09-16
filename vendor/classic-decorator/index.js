@@ -21,6 +21,10 @@
   IS_PERMA_CLASSIC.set(Ember.Service, false);
   IS_PERMA_CLASSIC.set(Ember.Helper, false);
   IS_PERMA_CLASSIC.set(Ember.Location, false);
+  IS_PERMA_CLASSIC.set(Ember.AutoLocation, false);
+  IS_PERMA_CLASSIC.set(Ember.HashLocation, false);
+  IS_PERMA_CLASSIC.set(Ember.HistoryLocation, false);
+  IS_PERMA_CLASSIC.set(Ember.NoneLocation, false);
 
   BASE_CLASSES.set(Ember.ObjectProxy, true);
   BASE_CLASSES.set(Ember.CoreObject, true);
