@@ -130,9 +130,9 @@ In order to remove the classic decorator from a class, you must:
 
 ## Compatibility
 
-- Ember.js v3.4 or above
+- Ember.js v3.16 or above
 - Ember CLI v2.13 or above
-- Node.js v8 or above
+- Node.js v10 or above
 
 ## Usage
 
