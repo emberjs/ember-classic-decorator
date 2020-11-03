@@ -1,7 +1,7 @@
 {
   "name": "ember-classic-decorator",
   "version": "2.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Decorator to aide migration from classic class system to native classes",
   "keywords": [
     "ember-addon"
   ],
