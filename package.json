@@ -5,7 +5,7 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "https://github.com/pzuraq/ember-classic-decorator",
+  "repository": "https://github.com/emberjs/ember-classic-decorator",
   "license": "MIT",
   "author": "",
   "directories": {
@@ -54,8 +54,8 @@
     "eslint-plugin-node": "^9.0.1",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.4",
-    "release-it": "^14.0.2",
-    "release-it-lerna-changelog": "^2.4.0"
+    "release-it": "^14.2.0",
+    "release-it-lerna-changelog": "^3.1.0"
   },
   "engines": {
     "node": "8.* || >= 10.*"
