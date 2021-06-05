@@ -1,11 +1,11 @@
 {
   "name": "ember-classic-decorator",
   "version": "2.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Decorator to aide migration from classic class system to native classes",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "https://github.com/pzuraq/ember-classic-decorator",
+  "repository": "https://github.com/emberjs/ember-classic-decorator",
   "license": "MIT",
   "author": "",
   "directories": {
@@ -23,7 +23,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@embroider/macros": "^0.24.1",
+    "@embroider/macros": "^0.29.0",
     "babel-plugin-filter-imports": "^3.0.0",
     "ember-cli-babel": "^7.22.1"
   },
@@ -57,8 +57,8 @@
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
     "qunit-dom": "^1.5.0",
-    "release-it": "^14.0.2",
-    "release-it-lerna-changelog": "^2.4.0"
+    "release-it": "^14.2.0",
+    "release-it-lerna-changelog": "^3.1.0"
   },
   "engines": {
     "node": "10.* || >= 12"
