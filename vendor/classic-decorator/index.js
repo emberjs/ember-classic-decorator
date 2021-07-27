@@ -149,6 +149,8 @@
   }
 
   let originalRequire = window.require;
+  let originalRequireEntries = Object.entries(window.require);
+
   window.require = require = function patchData(moduleName) {
     var DS, Resolver;
 
@@ -180,4 +182,8 @@
 
     return window.requirejs(moduleName);
   }
+
+  originalRequireEntries.forEach(
+    ([key, value]) => (window.require[key] = value)
+  );
 })(window);
