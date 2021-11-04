@@ -1,6 +1,6 @@
 {
   "name": "ember-classic-decorator",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Decorator to aide migration from classic class system to native classes",
   "keywords": [
     "ember-addon"
