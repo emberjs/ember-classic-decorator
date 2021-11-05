@@ -10,32 +10,34 @@
   global.__CLASSIC_HAS_CONSTRUCTOR__ = HAS_CONSTRUCTOR;
   global.__CLASSIC_OWN_CLASSES__ = OWN_CLASSES;
 
-  IS_PERMA_CLASSIC.set(Ember.Object, true);
-  IS_PERMA_CLASSIC.set(Ember.Component, true);
+  const _Ember = typeof require === 'function' && typeof require.has === 'function' && require.has('ember') ? require('ember').default : Ember;
 
-  IS_PERMA_CLASSIC.set(Ember.ObjectProxy, false);
-  IS_PERMA_CLASSIC.set(Ember.Application, false);
-  IS_PERMA_CLASSIC.set(Ember.Controller, false);
-  IS_PERMA_CLASSIC.set(Ember.Router, false);
-  IS_PERMA_CLASSIC.set(Ember.Route, false);
-  IS_PERMA_CLASSIC.set(Ember.Service, false);
-  IS_PERMA_CLASSIC.set(Ember.Helper, false);
-  IS_PERMA_CLASSIC.set(Ember.Location, false);
-  IS_PERMA_CLASSIC.set(Ember.AutoLocation, false);
-  IS_PERMA_CLASSIC.set(Ember.HashLocation, false);
-  IS_PERMA_CLASSIC.set(Ember.HistoryLocation, false);
-  IS_PERMA_CLASSIC.set(Ember.NoneLocation, false);
+  IS_PERMA_CLASSIC.set(_Ember.Object, true);
+  IS_PERMA_CLASSIC.set(_Ember.Component, true);
 
-  BASE_CLASSES.set(Ember.ObjectProxy, true);
-  BASE_CLASSES.set(Ember.CoreObject, true);
-  BASE_CLASSES.set(Ember.Object, true);
-  BASE_CLASSES.set(Ember.Application, true);
-  BASE_CLASSES.set(Ember.Controller, true);
-  BASE_CLASSES.set(Ember.Router, true);
-  BASE_CLASSES.set(Ember.Route, true);
-  BASE_CLASSES.set(Ember.Service, true);
-  BASE_CLASSES.set(Ember.Helper, true);
-  BASE_CLASSES.set(Ember.Location, true);
+  IS_PERMA_CLASSIC.set(_Ember.ObjectProxy, false);
+  IS_PERMA_CLASSIC.set(_Ember.Application, false);
+  IS_PERMA_CLASSIC.set(_Ember.Controller, false);
+  IS_PERMA_CLASSIC.set(_Ember.Router, false);
+  IS_PERMA_CLASSIC.set(_Ember.Route, false);
+  IS_PERMA_CLASSIC.set(_Ember.Service, false);
+  IS_PERMA_CLASSIC.set(_Ember.Helper, false);
+  IS_PERMA_CLASSIC.set(_Ember.Location, false);
+  IS_PERMA_CLASSIC.set(_Ember.AutoLocation, false);
+  IS_PERMA_CLASSIC.set(_Ember.HashLocation, false);
+  IS_PERMA_CLASSIC.set(_Ember.HistoryLocation, false);
+  IS_PERMA_CLASSIC.set(_Ember.NoneLocation, false);
+
+  BASE_CLASSES.set(_Ember.ObjectProxy, true);
+  BASE_CLASSES.set(_Ember.CoreObject, true);
+  BASE_CLASSES.set(_Ember.Object, true);
+  BASE_CLASSES.set(_Ember.Application, true);
+  BASE_CLASSES.set(_Ember.Controller, true);
+  BASE_CLASSES.set(_Ember.Router, true);
+  BASE_CLASSES.set(_Ember.Route, true);
+  BASE_CLASSES.set(_Ember.Service, true);
+  BASE_CLASSES.set(_Ember.Helper, true);
+  BASE_CLASSES.set(_Ember.Location, true);
 
   function getClassName(klass) {
     var klassToString = klass.toString();
@@ -54,7 +56,7 @@
     return null;
   }
 
-  Ember.Object.reopenClass({
+  _Ember.Object.reopenClass({
     create: function create() {
       // We can't actually use `new` as an alternative here, but most classes
       // don't need to be created by users, so no reason to assert in the
@@ -127,7 +129,7 @@
       return ret;
     },
     reopenClass: function reopenClass() {
-      if (OWN_CLASSES.get(this) && !IS_CLASSIC.has(this) && !Ember.Application.detect(this) && !Ember.Router.detect(this)) {
+      if (OWN_CLASSES.get(this) && !IS_CLASSIC.has(this) && !_Ember.Application.detect(this) && !_Ember.Router.detect(this)) {
         throw new Error(
           'You attempted to use the .reopen() method on the '.concat(
             getClassName(this),
