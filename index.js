@@ -33,13 +33,15 @@ module.exports = {
 
     // We emit macros from our babel plugin, which means our parent also needs
     // the macros babel plugin.
-    this.addons.find(a => a.name === '@embroider/macros').installBabelPlugin(parent);
+    this.addons
+      .find((a) => a.name === '@embroider/macros')
+      .installBabelPlugin(parent);
 
     if (isProductionEnv()) {
       let hasPlugin = parentOptions.babel.plugins
-        .filter(definition => Array.isArray(definition))
+        .filter((definition) => Array.isArray(definition))
         .some(
-          definition =>
+          (definition) =>
             definition[2] === 'filter-imports:ember-classic-decorator'
         );
 
@@ -58,7 +60,7 @@ module.exports = {
       this.import('vendor/classic-decorator/index.js');
 
       let hasPlugin = parentOptions.babel.plugins.some(
-        definition =>
+        (definition) =>
           typeof definition === 'string' &&
           definition.match('classic-decorator-transform')
       );

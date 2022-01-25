@@ -8,7 +8,8 @@ import { DEBUG } from '@glimmer/env';
 module('@classic', () => {
   if (DEBUG) {
     module('permaclassic classes', () => {
-      test('undecorated perma classes always throw', assert => {
+      // eslint-disable-next-line qunit/require-expect
+      test('undecorated perma classes always throw', (assert) => {
         assert.throws(() => {
           class Foo extends EmberObject {}
 
@@ -16,7 +17,7 @@ module('@classic', () => {
         }, /You defined the class Foo that extends from Ember.Object using native class syntax, but you didn't mark it with the @classic decorator/);
       });
 
-      test('decorated perma classes do not throw', assert => {
+      test('decorated perma classes do not throw', (assert) => {
         assert.expect(0);
 
         @classic
@@ -25,7 +26,7 @@ module('@classic', () => {
         Foo.create();
       });
 
-      test('classes defined with classic syntax do not throw', assert => {
+      test('classes defined with classic syntax do not throw', (assert) => {
         assert.expect(0);
 
         const Foo = EmberObject.extend({});
@@ -35,7 +36,7 @@ module('@classic', () => {
     });
 
     module('constructor / init', () => {
-      test('does not throw if classes are interleaved', assert => {
+      test('does not throw if classes are interleaved', (assert) => {
         assert.expect(0);
 
         const FooController = Controller.extend();
@@ -57,7 +58,8 @@ module('@classic', () => {
         QuuxController.create();
       });
 
-      test('throws an error if subclass uses constructor and parent class uses init', assert => {
+      // eslint-disable-next-line qunit/require-expect
+      test('throws an error if subclass uses constructor and parent class uses init', (assert) => {
         assert.throws(() => {
           const FooController = Controller.extend({
             init() {
@@ -78,7 +80,7 @@ module('@classic', () => {
 
     module('static class methods', () => {
       module('reopen', () => {
-        test('works with the decorator', assert => {
+        test('works with the decorator', (assert) => {
           assert.expect(0);
 
           @classic
@@ -87,7 +89,7 @@ module('@classic', () => {
           FooController.reopen({});
         });
 
-        test('works with classic classes', assert => {
+        test('works with classic classes', (assert) => {
           assert.expect(0);
 
           const FooController = Controller.extend({});
@@ -95,7 +97,8 @@ module('@classic', () => {
           FooController.reopen({});
         });
 
-        test('throws without the decorator', assert => {
+        // eslint-disable-next-line qunit/require-expect
+        test('throws without the decorator', (assert) => {
           assert.throws(() => {
             class FooController extends Controller {}
 
@@ -105,7 +108,7 @@ module('@classic', () => {
       });
 
       module('reopenClass', () => {
-        test('works with the decorator', assert => {
+        test('works with the decorator', (assert) => {
           assert.expect(0);
 
           @classic
@@ -114,7 +117,7 @@ module('@classic', () => {
           FooController.reopenClass({});
         });
 
-        test('works with classic classes', assert => {
+        test('works with classic classes', (assert) => {
           assert.expect(0);
 
           const FooController = Controller.extend({});
@@ -122,7 +125,8 @@ module('@classic', () => {
           FooController.reopenClass({});
         });
 
-        test('throws without the decorator', assert => {
+        // eslint-disable-next-line qunit/require-expect
+        test('throws without the decorator', (assert) => {
           assert.throws(() => {
             class FooController extends Controller {}
 
@@ -132,7 +136,7 @@ module('@classic', () => {
       });
     });
   } else {
-    test('nothing is included or decorated', assert => {
+    test('nothing is included or decorated', (assert) => {
       assert.expect(0);
 
       @classic
