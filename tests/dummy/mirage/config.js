@@ -1,4 +1,4 @@
-export default function() {
+export default function () {
   this.namespace = 'api';
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -26,10 +26,10 @@ export default function() {
   */
 
   this.get('/posts/1', () => ({
-    "posts": {
-      "id": 1,
-      "title": "I'm Running to Reform the W3C's Tag",
-      "author": "Yehuda Katz"
-    }
+    posts: {
+      id: 1,
+      title: "I'm Running to Reform the W3C's Tag",
+      author: 'Yehuda Katz',
+    },
   }));
 }
