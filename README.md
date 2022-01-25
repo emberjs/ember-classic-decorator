@@ -5,6 +5,7 @@ gets removed from production builds, and is entirely for the purpose of helping
 you navigate the upgrade from Ember's _classic class_ system to native classes
 in Ember Octane!
 
+
 ## Installation
 
 First, install the addon:
@@ -130,9 +131,9 @@ In order to remove the classic decorator from a class, you must:
 
 ## Compatibility
 
-- Ember.js v3.4 or above
-- Ember CLI v2.13 or above
-- Node.js v8 or above
+- Ember.js v3.24 or above
+- Ember CLI v3.24 or above
+- Node.js v12 or above
 
 ## Usage
 
