@@ -14,7 +14,7 @@ module('@classic', () => {
           class Foo extends EmberObject {}
 
           Foo.create();
-        }, /You defined the class Foo that extends from Ember.Object using native class syntax, but you didn't mark it with the @classic decorator/);
+        }, /You defined the class Foo that extends from Ember.?Object using native class syntax, but you didn't mark it with the @classic decorator/);
       });
 
       test('decorated perma classes do not throw', (assert) => {
