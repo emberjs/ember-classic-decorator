@@ -1,5 +1,17 @@
 # Changelog
 
+
+## v3.0.0 (2022-01-31)
+
+#### :boom: Breaking Change
+* [#86](https://github.com/emberjs/ember-classic-decorator/pull/86) Run `ember-cli-update` ([@boris-petrov](https://github.com/boris-petrov)). This drops support for Node < 12 and Ember < 3.24.
+
+#### :rocket: Enhancement
+* [#89](https://github.com/emberjs/ember-classic-decorator/pull/89) Ember 4 compatibility ([@boris-petrov](https://github.com/boris-petrov))
+
+#### Committers: 1
+- Boris Petrov ([@boris-petrov](https://github.com/boris-petrov))
+
 ## v2.0.1 (2021-11-04)
 
 #### :bug: Bug Fix
