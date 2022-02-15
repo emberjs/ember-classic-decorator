@@ -4,6 +4,7 @@ import EmberObject from '@ember/object';
 import Controller from '@ember/controller';
 import classic from 'ember-classic-decorator';
 import { DEBUG } from '@glimmer/env';
+import BugComponent from 'dummy/components/bug-case';
 
 module('@classic', () => {
   if (DEBUG) {
@@ -132,6 +133,14 @@ module('@classic', () => {
 
             FooController.reopenClass({});
           }, /You attempted to use the .reopen\(\) method on the FooController class/);
+        });
+
+        test('throws without the decorator when combining export default and a decorated property', assert => {
+          assert.throws(() => {
+            // The BugComponent lives in a separate file because the bug only
+            // manifests when combining `export default` with decorators.
+            BugComponent.reopenClass({});
+          }, /You attempted to use the .reopen\(\) method on the @ember\/component class/);
         });
       });
     });
