@@ -4,6 +4,10 @@ import EmberObject from '@ember/object';
 import Controller from '@ember/controller';
 import classic from 'ember-classic-decorator';
 import { DEBUG } from '@glimmer/env';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
+import RESTAdapter from '@ember-data/adapter/rest';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
+import RESTSerializer from '@ember-data/serializer/rest';
 
 module('@classic', () => {
   if (DEBUG) {
@@ -32,6 +36,26 @@ module('@classic', () => {
         const Foo = EmberObject.extend({});
 
         Foo.create();
+      });
+    });
+
+    module('ED classes', () => {
+      test('Adapters', function (assert) {
+        assert.expect(0);
+        class Foo extends JSONAPIAdapter {}
+        Foo.create();
+
+        class Bar extends RESTAdapter {}
+        Bar.create();
+      });
+
+      test('Serializers', function (assert) {
+        assert.expect(0);
+        class Foo extends JSONAPISerializer {}
+        Foo.create();
+
+        class Bar extends RESTSerializer {}
+        Bar.create();
       });
     });
 
