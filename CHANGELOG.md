@@ -1,6 +1,15 @@
 # Changelog
 
 
+
+## v3.0.1 (2022-10-12)
+
+#### :bug: Bug Fix
+* [#93](https://github.com/emberjs/ember-classic-decorator/pull/93) Ember cli deprecation workflow compatibility ([@andreyfel](https://github.com/andreyfel))
+
+#### Committers: 1
+- Andrey Fel ([@andreyfel](https://github.com/andreyfel))
+
 ## v3.0.0 (2022-01-31)
 
 #### :boom: Breaking Change
