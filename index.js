@@ -4,6 +4,10 @@ function isProductionEnv() {
   return /production/.test(process.env.EMBER_ENV);
 }
 
+function isTestEnv() {
+  return /test/.test(process.env.EMBER_ENV);
+}
+
 module.exports = {
   name: require('./package').name,
 
@@ -57,7 +61,9 @@ module.exports = {
         ]);
       }
     } else {
-      this.import('vendor/classic-decorator/index.js');
+      const importType = isTestEnv() ? 'test' : 'vendor';
+
+      this.import('vendor/classic-decorator/index.js', { type: importType });
 
       let hasPlugin = parentOptions.babel.plugins.some(
         (definition) =>
