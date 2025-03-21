@@ -1,31 +1,6 @@
-import {
-  discoverEmberDataModels,
-  applyEmberDataSerializers,
-} from 'ember-cli-mirage';
-import { createServer } from 'miragejs';
-
-export default function (config) {
-  let finalConfig = {
-    ...config,
-    models: {
-      ...discoverEmberDataModels(config.store),
-      ...config.models,
-    },
-    serializers: applyEmberDataSerializers(config.serializers),
-    routes,
-  };
-  return createServer(finalConfig);
-}
-
-function routes() {
+export default function () {
   this.namespace = 'api';
-  this.get('/posts/1', () => ({
-    posts: {
-      id: 1,
-      title: "I'm Running to Reform the W3C's Tag",
-      author: 'Yehuda Katz',
-    },
-  }));
+
   // These comments are here to help you get started. Feel free to delete them.
 
   /*
@@ -49,4 +24,12 @@ function routes() {
 
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
+
+  this.get('/posts/1', () => ({
+    posts: {
+      id: 1,
+      title: "I'm Running to Reform the W3C's Tag",
+      author: 'Yehuda Katz',
+    },
+  }));
 }
