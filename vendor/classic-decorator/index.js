@@ -22,12 +22,8 @@
   IS_PERMA_CLASSIC.set(_Ember.Route, false);
   IS_PERMA_CLASSIC.set(_Ember.Service, false);
   IS_PERMA_CLASSIC.set(_Ember.Helper, false);
-  if (_Ember.Location) { // Not present from Ember 5.3 onward
-    IS_PERMA_CLASSIC.set(_Ember.Location, false);
-  }
-  if (_Ember.AutoLocation) { // Not present from Ember 5.3 onward
-    IS_PERMA_CLASSIC.set(_Ember.AutoLocation, false);
-  }
+  IS_PERMA_CLASSIC.set(_Ember.Location, false);
+  IS_PERMA_CLASSIC.set(_Ember.AutoLocation, false);
   IS_PERMA_CLASSIC.set(_Ember.HashLocation, false);
   IS_PERMA_CLASSIC.set(_Ember.HistoryLocation, false);
   IS_PERMA_CLASSIC.set(_Ember.NoneLocation, false);
@@ -41,9 +37,7 @@
   BASE_CLASSES.set(_Ember.Route, true);
   BASE_CLASSES.set(_Ember.Service, true);
   BASE_CLASSES.set(_Ember.Helper, true);
-  if (_Ember.Location) { // Not present from Ember 5.3 onward
-    BASE_CLASSES.set(_Ember.Location, true);
-  }
+  BASE_CLASSES.set(_Ember.Location, true);
 
   function getClassName(klass) {
     var klassToString = klass.toString();
