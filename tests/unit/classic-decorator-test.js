@@ -46,18 +46,22 @@ module('@classic', () => {
     module('ED classes', () => {
       test('Adapters', function (assert) {
         assert.expect(0);
+        @classic
         class Foo extends JSONAPIAdapter {}
         Foo.create();
 
+        @classic
         class Bar extends RESTAdapter {}
         Bar.create();
       });
 
       test('Serializers', function (assert) {
         assert.expect(0);
+        @classic
         class Foo extends JSONAPISerializer {}
         Foo.create();
 
+        @classic
         class Bar extends RESTSerializer {}
         Bar.create();
       });
