@@ -1,3 +1,9 @@
+> [!NOTE]  
+> This library isn't needed. It can safely be removed from your projects with no change to runtime or buildtime behaviors.
+
+> [!CAUTION]
+> This library should be removed if you plan on switching to Vite. (Vite supports ember-source 3.28+) 
+
 # ember-classic-decorator
 
 This addon provides a dev-time only class decorator, `@classic`. This decorator
