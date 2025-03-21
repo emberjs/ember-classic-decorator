@@ -1,6 +1,7 @@
+/* eslint-disable no-empty, no-prototype-builtins, ember/use-ember-data-rfc-395-imports, no-global-assign, prettier/prettier */
 'use strict';
 
-/* globals Ember, define */
+/* globals Ember, require */
 (function(global) {
   var OWN_CLASSES = new WeakMap();
   var HAS_CONSTRUCTOR = new WeakMap();
