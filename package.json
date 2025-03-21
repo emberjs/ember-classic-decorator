@@ -38,7 +38,7 @@
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.0.1",
     "@ember/test-helpers": "^2.9.3",
-    "@embroider/test-setup": "^2.1.1",
+    "@embroider/test-setup": "^4.0.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "concurrently": "^8.0.1",
@@ -78,7 +78,7 @@
     "webpack": "^5.78.0"
   },
   "peerDependencies": {
-    "ember-source": "^4.0.0"
+    "ember-source": ">=3.24"
   },
   "engines": {
     "node": "18.* || 20.* || >= 22"
