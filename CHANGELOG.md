@@ -1,5 +1,31 @@
 # Changelog
 
+## Release (2025-03-21)
+
+* ember-classic-decorator 4.0.0 (major)
+
+#### :boom: Breaking Change
+* `ember-classic-decorator`
+  * [#114](https://github.com/emberjs/ember-classic-decorator/pull/114) Drop support for Node < 18, update to 4.12 with ember-cli-update, and convert to pnpm ([@mansona](https://github.com/mansona))
+
+#### :rocket: Enhancement
+* `ember-classic-decorator`
+  * [#119](https://github.com/emberjs/ember-classic-decorator/pull/119) Fix Ember 5.x ([@mansona](https://github.com/mansona))
+
+#### :memo: Documentation
+* `ember-classic-decorator`
+  * [#112](https://github.com/emberjs/ember-classic-decorator/pull/112) Add note to README ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* `ember-classic-decorator`
+  * [#120](https://github.com/emberjs/ember-classic-decorator/pull/120) make sure we're testing with the right ember-data versions ([@mansona](https://github.com/mansona))
+  * [#117](https://github.com/emberjs/ember-classic-decorator/pull/117) start using release-plan ([@mansona](https://github.com/mansona))
+  * [#115](https://github.com/emberjs/ember-classic-decorator/pull/115) remove mirage ([@mansona](https://github.com/mansona))
+
+#### Committers: 2
+- Chris Manson ([@mansona](https://github.com/mansona))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 
 
 ## v3.0.1 (2022-10-12)
