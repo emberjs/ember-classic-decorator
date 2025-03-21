@@ -1,6 +1,7 @@
+/* eslint-disable no-empty, no-prototype-builtins, ember/use-ember-data-rfc-395-imports, no-global-assign, prettier/prettier */
 'use strict';
 
-/* globals Ember, define */
+/* globals Ember, require */
 (function(global) {
   var OWN_CLASSES = new WeakMap();
   var HAS_CONSTRUCTOR = new WeakMap();
@@ -22,8 +23,12 @@
   IS_PERMA_CLASSIC.set(_Ember.Route, false);
   IS_PERMA_CLASSIC.set(_Ember.Service, false);
   IS_PERMA_CLASSIC.set(_Ember.Helper, false);
-  IS_PERMA_CLASSIC.set(_Ember.Location, false);
-  IS_PERMA_CLASSIC.set(_Ember.AutoLocation, false);
+  if (_Ember.Location) { // Not present from Ember 5.3 onward
+    IS_PERMA_CLASSIC.set(_Ember.Location, false);
+  }
+  if (_Ember.AutoLocation) { // Not present from Ember 5.3 onward
+    IS_PERMA_CLASSIC.set(_Ember.AutoLocation, false);
+  }
   IS_PERMA_CLASSIC.set(_Ember.HashLocation, false);
   IS_PERMA_CLASSIC.set(_Ember.HistoryLocation, false);
   IS_PERMA_CLASSIC.set(_Ember.NoneLocation, false);
@@ -37,7 +42,9 @@
   BASE_CLASSES.set(_Ember.Route, true);
   BASE_CLASSES.set(_Ember.Service, true);
   BASE_CLASSES.set(_Ember.Helper, true);
-  BASE_CLASSES.set(_Ember.Location, true);
+  if (_Ember.Location) { // Not present from Ember 5.3 onward
+    BASE_CLASSES.set(_Ember.Location, true);
+  }
 
   function getClassName(klass) {
     var klassToString = klass.toString();
