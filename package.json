@@ -38,7 +38,7 @@
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.0.1",
     "@ember/test-helpers": "^2.9.3",
-    "@embroider/test-setup": "^2.1.1",
+    "@embroider/test-setup": "^4.0.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "concurrently": "^8.0.1",
@@ -48,7 +48,6 @@
     "ember-cli-deprecation-workflow": "^2.1.0",
     "ember-cli-htmlbars": "^6.2.0",
     "ember-cli-inject-live-reload": "^2.1.0",
-    "ember-cli-mirage": "^2.4.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
     "ember-data": "~4.1.0",
@@ -79,7 +78,7 @@
     "webpack": "^5.78.0"
   },
   "peerDependencies": {
-    "ember-source": "^4.0.0"
+    "ember-source": ">=3.24"
   },
   "engines": {
     "node": "18.* || 20.* || >= 22"
