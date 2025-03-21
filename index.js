@@ -42,7 +42,7 @@ module.exports = {
         .filter((definition) => Array.isArray(definition))
         .some(
           (definition) =>
-            definition[2] === 'filter-imports:ember-classic-decorator'
+            definition[2] === 'filter-imports:ember-classic-decorator',
         );
 
       if (!hasPlugin) {
@@ -62,12 +62,12 @@ module.exports = {
       let hasPlugin = parentOptions.babel.plugins.some(
         (definition) =>
           typeof definition === 'string' &&
-          definition.match('classic-decorator-transform')
+          definition.match('classic-decorator-transform'),
       );
 
       if (!hasPlugin) {
         parentOptions.babel.plugins.push(
-          require.resolve('./lib/classic-decorator-transform-v4')
+          require.resolve('./lib/classic-decorator-transform-v4'),
         );
       }
     }
